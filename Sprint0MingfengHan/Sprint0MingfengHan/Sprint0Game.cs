@@ -65,7 +65,7 @@ namespace Sprint0MingfengHan
             shuttleTexture = Content.Load<Texture2D>("shuttle");
             nonMovingSprite = new NonmovingAnimatedSprite(marioTexture, new Vector2(80, 80), spriteBatch);
             upAndDownSprite = new UpAndDownNonAnimatedSprite(marioTexture, new Vector2(160, 80), spriteBatch, graphics);
-            leftAndRightSprite = new LeftAndRightAnimatedSprite(marioTexture, new Vector2(240, 80), spriteBatch);
+            leftAndRightSprite = new LeftAndRightAnimatedSprite(marioTexture, new Vector2(240, 80), spriteBatch, graphics);
 
 
             ICommand quitCommand = new QuitCommand(this);

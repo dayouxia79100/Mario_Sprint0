@@ -94,11 +94,11 @@ namespace Sprint0MingfengHan
 
         public override void Update(GameTime gameTime)
         {
-            bounceUpAndDown(gameTime);
+            bounce(gameTime);
         }
 
         // note that even though this method is named this way, what it really does is bounce in all directions.
-        private void bounceUpAndDown(GameTime gameTime)
+        private void bounce(GameTime gameTime)
         {
             Position +=
         spriteSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -145,18 +145,62 @@ namespace Sprint0MingfengHan
 
     class LeftAndRightAnimatedSprite : NonmovingAnimatedSprite
     {
-        public LeftAndRightAnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch batch)
+        private Vector2 spriteSpeed = new Vector2(50.0f, 0.0f);
+        private GraphicsDeviceManager graphics;
+        public LeftAndRightAnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch batch, GraphicsDeviceManager graphics)
             : base(texture, position, batch)
         {
-
+            this.graphics = graphics;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Vector2 position = Position;
-            position.X++;
-            Position = position;
+            bounce(gameTime);
+
+        }
+
+        // TODO this code is repeated from Upanddown mario, refactor it later! 
+        private void bounce(GameTime gameTime)
+        {
+            Position +=
+        spriteSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            int MaxX =
+                graphics.GraphicsDevice.Viewport.Width - width;
+            int MinX = 0;
+            int MaxY =
+                graphics.GraphicsDevice.Viewport.Height - height;
+            int MinY = 0;
+
+            // Check for bounce.
+            if (Position.X > MaxX)
+            {
+                spriteSpeed.X *= -1;
+                //Position.X = MaxX;
+                Position = new Vector2(MaxX, Position.Y);
+            }
+
+            else if (Position.X < MinX)
+            {
+                spriteSpeed.X *= -1;
+                //Position.X = MinX;
+                Position = new Vector2(MinX, Position.Y);
+            }
+
+            if (Position.Y > MaxY)
+            {
+                spriteSpeed.Y *= -1;
+                //Position.Y = MaxY;
+                Position = new Vector2(Position.X, MaxY);
+            }
+
+            else if (Position.Y < MinY)
+            {
+                spriteSpeed.Y *= -1;
+                //Position.Y = MinY;
+                Position = new Vector2(Position.X, MinY);
+            }
 
         }
 
