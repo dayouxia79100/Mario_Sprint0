@@ -94,28 +94,20 @@ namespace Sprint0MingfengHan
 
         public override void Update(GameTime gameTime)
         {
-
-            
-            Vector2 position = Position;
-            position.Y++;
-            Position = position;
-           
-
-            //bouncUpAndDown(gameTime);
-            
-
+            bounceUpAndDown(gameTime);
         }
 
-        private void bouncUpAndDown(GameTime gameTime)
+        // note that even though this method is named this way, what it really does is bounce in all directions.
+        private void bounceUpAndDown(GameTime gameTime)
         {
             Position +=
         spriteSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             int MaxX =
-                graphics.GraphicsDevice.Viewport.Width - Texture.Width;
+                graphics.GraphicsDevice.Viewport.Width - width;
             int MinX = 0;
             int MaxY =
-                graphics.GraphicsDevice.Viewport.Height - Texture.Height;
+                graphics.GraphicsDevice.Viewport.Height - height;
             int MinY = 0;
 
             // Check for bounce.
