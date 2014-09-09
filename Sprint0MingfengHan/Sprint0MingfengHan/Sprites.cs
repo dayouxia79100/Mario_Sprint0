@@ -76,7 +76,7 @@ namespace Sprint0MingfengHan
         private readonly int height = 34;
 
         // i created this
-        private Vector2 spriteSpeed = new Vector2(50.0f, 0.0f);
+        private Vector2 spriteSpeed = new Vector2(0.0f, 50.0f);
         private GraphicsDeviceManager graphics;
         public UpAndDownNonAnimatedSprite(Texture2D texture, Vector2 position, SpriteBatch batch, GraphicsDeviceManager graphics)
             : base(texture, position, batch)
@@ -95,11 +95,19 @@ namespace Sprint0MingfengHan
         public override void Update(GameTime gameTime)
         {
 
-            /* I did this originally
+            
             Vector2 position = Position;
             position.Y++;
             Position = position;
-             * */
+           
+
+            //bouncUpAndDown(gameTime);
+            
+
+        }
+
+        private void bouncUpAndDown(GameTime gameTime)
+        {
             Position +=
         spriteSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
