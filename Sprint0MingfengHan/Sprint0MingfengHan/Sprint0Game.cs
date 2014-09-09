@@ -21,10 +21,10 @@ namespace Sprint0MingfengHan
 
         private KeyboardController keyboardController;
         private Texture2D marioTexture;
-        private Texture2D shuttleTexture;
         private NonmovingAnimatedSprite nonMovingSprite;
         private UpAndDownNonAnimatedSprite upAndDownSprite;
         private LeftAndRightAnimatedSprite leftAndRightSprite;
+        public BaseSprite CurrentSprite{get;set;}
         public static readonly int windowHeight = 340;
         public static readonly int windowWidth = 480;
 
@@ -62,16 +62,16 @@ namespace Sprint0MingfengHan
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             marioTexture = Content.Load<Texture2D>("smb_mario_sheet");
-            shuttleTexture = Content.Load<Texture2D>("shuttle");
             nonMovingSprite = new NonmovingAnimatedSprite(marioTexture, new Vector2(80, 80), spriteBatch);
-            upAndDownSprite = new UpAndDownNonAnimatedSprite(marioTexture, new Vector2(160, 80), spriteBatch, graphics);
-            leftAndRightSprite = new LeftAndRightAnimatedSprite(marioTexture, new Vector2(240, 80), spriteBatch, graphics);
+            upAndDownSprite = new UpAndDownNonAnimatedSprite(marioTexture, new Vector2(80, 80), spriteBatch, graphics);
+            leftAndRightSprite = new LeftAndRightAnimatedSprite(marioTexture, new Vector2(80, 80), spriteBatch, graphics);
 
+            CurrentSprite = nonMovingSprite;
 
             ICommand quitCommand = new QuitCommand(this);
-            ICommand nonmovingAnimatedCommand = new AnimateCommand(nonMovingSprite);
-            ICommand upAndDownCommand = new AnimateCommand(upAndDownSprite);
-            ICommand leftAndRightCommand = new AnimateCommand(leftAndRightSprite);
+            ICommand nonmovingAnimatedCommand = new AnimateCommand(nonMovingSprite, this);
+            ICommand upAndDownCommand = new AnimateCommand(upAndDownSprite, this);
+            ICommand leftAndRightCommand = new AnimateCommand(leftAndRightSprite, this);
 
             keyboardController = new KeyboardController(
                 quitCommand,
@@ -114,10 +114,7 @@ namespace Sprint0MingfengHan
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            nonMovingSprite.Draw();
-            upAndDownSprite.Draw();
-            leftAndRightSprite.Draw();
-
+            CurrentSprite.Draw();
             spriteBatch.End();
             // TODO: Add your drawing code here
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint0MingfengHan
 {
-    interface ICommand
+    public interface ICommand
     {
         void ExecuteCommand(GameTime gameTime);
     }

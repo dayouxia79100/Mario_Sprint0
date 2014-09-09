@@ -33,12 +33,10 @@ namespace Sprint0MingfengHan
 
         public void Update(GameTime gameTime)
         {
-           // checks which key is pressed.
-            reactToKeyPressed(Keys.Q, gameTime);
-            reactToKeyPressed(Keys.W, gameTime);
-            reactToKeyPressed(Keys.E, gameTime);
-            reactToKeyPressed(Keys.R, gameTime);
-           
+            foreach (KeyValuePair<Keys, ICommand> entry in keyCommandMap)
+            {
+                reactToKeyPressed(entry.Key, gameTime);
+            }
         }
 
         private void reactToKeyPressed(Keys pressedKey, GameTime gameTime)
@@ -58,8 +56,6 @@ namespace Sprint0MingfengHan
                 ICommand runCommand;
                 if (keyCommandMap.TryGetValue(pressedKey, out runCommand)) runCommand.ExecuteCommand(gameTime);
             }
-           
-           
 
         }
     }
