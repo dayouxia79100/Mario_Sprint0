@@ -54,35 +54,31 @@ namespace Sprint0MingfengHan
             // TODO this code looks ugly, may need to refactor later.
             if (newState.IsConnected)
             {
-                if(newState.Buttons.Start == ButtonState.Pressed &&
-                    oldState.Buttons.Start == ButtonState.Released)
+                if(newState.Buttons.Start == ButtonState.Pressed)
                 {
-                    if (newState.Buttons.Start == ButtonState.Pressed) reactToButtonPressed(ControllerButtonEnum.Start, gameTime);
+                    reactToButtonPressed(ControllerButtonEnum.Start);
                 }
-                else if(newState.Buttons.A == ButtonState.Pressed &&
-                    oldState.Buttons.Start == ButtonState.Released)
+                else if(newState.Buttons.A == ButtonState.Pressed)
                 {
-                    if (newState.Buttons.A == ButtonState.Pressed) reactToButtonPressed(ControllerButtonEnum.A, gameTime);
+                    reactToButtonPressed(ControllerButtonEnum.A);
                 }
-                else if(newState.Buttons.B == ButtonState.Pressed &&
-                    oldState.Buttons.Start == ButtonState.Released)
+                else if(newState.Buttons.B == ButtonState.Pressed)
                 {
-                    if (newState.Buttons.B == ButtonState.Pressed) reactToButtonPressed(ControllerButtonEnum.B, gameTime);
+                    reactToButtonPressed(ControllerButtonEnum.B);
                 }
-                else if(newState.Buttons.X == ButtonState.Pressed &&
-                    oldState.Buttons.X == ButtonState.Released)
+                else if(newState.Buttons.X == ButtonState.Pressed)
                 {
-                    if (newState.Buttons.X == ButtonState.Pressed) reactToButtonPressed(ControllerButtonEnum.X, gameTime);
+                    reactToButtonPressed(ControllerButtonEnum.X);
                 }
                 oldState = newState;
             }
         }
 
-        private void reactToButtonPressed(ControllerButtonEnum pressedButton, GameTime gameTime)
+        private void reactToButtonPressed(ControllerButtonEnum pressedButton)
         {
 
                 ICommand runCommand;
-                if (controllerCommandMap.TryGetValue(pressedButton, out runCommand)) runCommand.ExecuteCommand(gameTime);
+                if (controllerCommandMap.TryGetValue(pressedButton, out runCommand)) runCommand.ExecuteCommand();
 
         }
     }

@@ -35,30 +35,26 @@ namespace Sprint0MingfengHan
         {
             foreach (KeyValuePair<Keys, ICommand> entry in keyCommandMap)
             {
-                reactToKeyPressed(entry.Key, gameTime);
+                reactToKeyPressed(entry.Key);
             }
         }
 
-        private void reactToKeyPressed(Keys pressedKey, GameTime gameTime)
+        private void reactToKeyPressed(Keys pressedKey)
         {
 
             // if the key is not pressed before and key is pressed now, run the corresponding command
             // else if the key was previously pressed, keep doing it
             KeyboardState newState = Keyboard.GetState();
+
+            // if the key is not pressed in the old state AND this key is down at current state, run command
+
             if (!oldState.IsKeyDown(pressedKey) && newState.IsKeyDown(pressedKey))
             {
                 // if key is pressed just now, run command
                 ICommand runCommand;
-                if (keyCommandMap.TryGetValue(pressedKey, out runCommand)) runCommand.ExecuteCommand(gameTime);
+                if (keyCommandMap.TryGetValue(pressedKey, out runCommand)) runCommand.ExecuteCommand();
                 oldState = newState;
             }
-            else if (oldState.IsKeyDown(pressedKey))
-            {
-                // if it is pressed before
-                ICommand runCommand;
-                if (keyCommandMap.TryGetValue(pressedKey, out runCommand)) runCommand.ExecuteCommand(gameTime);
-            }
-
         }
     }
 }
