@@ -20,6 +20,7 @@ namespace Sprint0MingfengHan
         SpriteBatch spriteBatch;
 
         private KeyboardController keyboardController;
+        private GamePadController gamePadController;
         private Texture2D marioTexture;
         private NonmovingAnimatedSprite nonMovingSprite;
         private UpAndDownNonAnimatedSprite upAndDownSprite;
@@ -78,8 +79,16 @@ namespace Sprint0MingfengHan
                 nonmovingAnimatedCommand,
                 upAndDownCommand,
                 leftAndRightCommand);
+
+            gamePadController = new GamePadController(
+                quitCommand,
+                nonmovingAnimatedCommand,
+                upAndDownCommand,
+                leftAndRightCommand);
+
             // TODO: use this.Content to load your game content here
         }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -101,6 +110,7 @@ namespace Sprint0MingfengHan
             // TODO: Add your update logic here
             base.Update(gameTime);
             keyboardController.Update(gameTime);
+            gamePadController.Update(gameTime);
 
 
         }

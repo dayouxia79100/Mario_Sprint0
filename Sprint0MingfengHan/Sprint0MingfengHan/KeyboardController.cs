@@ -14,7 +14,7 @@ namespace Sprint0MingfengHan
 
         private KeyboardState oldState;
 
-        // creates a list of controllers
+        // creates a list of commands
         public KeyboardController(
             ICommand qCommand,
             ICommand wCommand,
@@ -42,6 +42,8 @@ namespace Sprint0MingfengHan
         private void reactToKeyPressed(Keys pressedKey, GameTime gameTime)
         {
 
+            // if the key is not pressed before and key is pressed now, run the corresponding command
+            // else if the key was previously pressed, keep doing it
             KeyboardState newState = Keyboard.GetState();
             if (!oldState.IsKeyDown(pressedKey) && newState.IsKeyDown(pressedKey))
             {
