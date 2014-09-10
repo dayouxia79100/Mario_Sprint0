@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint0MingfengHan
 {
-    // keyboard commands
+
+    #region QuitCommand
     class QuitCommand : ICommand
     {
 
@@ -23,18 +24,25 @@ namespace Sprint0MingfengHan
             this.game.Exit();
         }
     }
+    #endregion
 
-    class AnimateCommand : ICommand
+    #region AnimatedCommand
+    public class AnimateCommand : ICommand
     {
-        private IAnimatedSprite sprite;
-        public AnimateCommand(IAnimatedSprite sprite)
+        // here i had to use this abstract class instead of using interface, since I do not have a method in my interface.
+        public BaseSprite Sprite { get; set; }
+        private Sprint0Game game;
+        public AnimateCommand(BaseSprite sprite, Sprint0Game game)
         {
-            this.sprite = sprite;
+            Sprite = sprite;
+            this.game = game;
         }
 
         public void ExecuteCommand(GameTime gameTime)
         {
-            this.sprite.Update(gameTime);
+            game.CurrentSprite = Sprite;
+            Sprite.Update(gameTime); 
         }
     }
+#endregion
 }

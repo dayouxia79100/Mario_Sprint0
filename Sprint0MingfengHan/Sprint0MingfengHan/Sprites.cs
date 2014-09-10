@@ -7,7 +7,8 @@ using System.Text;
 
 namespace Sprint0MingfengHan
 {
-    abstract class BaseSprite : IAnimatedSprite
+    #region BaseSprite
+    public abstract class BaseSprite : IAnimatedSprite
     {
         public Vector2 Position { get; set; }
         public Texture2D Texture { set; get; }
@@ -28,7 +29,10 @@ namespace Sprint0MingfengHan
         public abstract void Update(GameTime gameTime);
     }
 
-    class NonmovingAnimatedSprite : BaseSprite
+    #endregion
+
+    #region NonmovingAnimatedSprite
+    public class NonmovingAnimatedSprite : BaseSprite
     {
         protected int currentFrame;
         protected int totalFrames;
@@ -68,8 +72,10 @@ namespace Sprint0MingfengHan
         }
 
     }
+    #endregion
 
-    class UpAndDownNonAnimatedSprite : BaseSprite
+    #region UpAndDownNonAnimatedSprite
+    public class UpAndDownNonAnimatedSprite : BaseSprite
     {
         private readonly int x = 238, y = 51;
         private readonly int width = 18;
@@ -142,8 +148,10 @@ namespace Sprint0MingfengHan
         }
     }
 
+    #endregion
 
-    class LeftAndRightAnimatedSprite : NonmovingAnimatedSprite
+    #region LeftAndRightAnimatedSprite
+    public class LeftAndRightAnimatedSprite : NonmovingAnimatedSprite
     {
         private Vector2 spriteSpeed = new Vector2(50.0f, 0.0f);
         private GraphicsDeviceManager graphics;
@@ -205,5 +213,6 @@ namespace Sprint0MingfengHan
         }
 
     }
+#endregion
 }
 
