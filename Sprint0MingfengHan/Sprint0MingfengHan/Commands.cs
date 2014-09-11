@@ -19,7 +19,7 @@ namespace Sprint0MingfengHan
         }
 
 
-        public void ExecuteCommand(GameTime gameTime)
+        public void ExecuteCommand()
         {
             this.game.Exit();
         }
@@ -38,10 +38,9 @@ namespace Sprint0MingfengHan
             this.game = game;
         }
 
-        public void ExecuteCommand(GameTime gameTime)
+        public void ExecuteCommand()
         {
             game.CurrentSprite = Sprite;
-            Sprite.Update(gameTime); 
         }
     }
 #endregion

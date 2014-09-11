@@ -75,6 +75,7 @@ namespace Sprint0MingfengHan
             ICommand leftAndRightCommand = new AnimateCommand(leftAndRightSprite, this);
 
             keyboardController = new KeyboardController(
+
                 quitCommand,
                 nonmovingAnimatedCommand,
                 upAndDownCommand,
@@ -111,7 +112,7 @@ namespace Sprint0MingfengHan
             base.Update(gameTime);
             keyboardController.Update(gameTime);
             gamePadController.Update(gameTime);
-
+            CurrentSprite.Update(gameTime);
 
         }
 

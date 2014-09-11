@@ -8,6 +8,6 @@ namespace Sprint0MingfengHan
 {
     public interface ICommand
     {
-        void ExecuteCommand(GameTime gameTime);
+        void ExecuteCommand();
     }
 }
