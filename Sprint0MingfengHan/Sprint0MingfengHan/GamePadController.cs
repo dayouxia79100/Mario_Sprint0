@@ -13,8 +13,6 @@ namespace Sprint0MingfengHan
 
         private Dictionary<ControllerButtonEnum, ICommand> controllerCommandMap;
 
-        private GamePadState oldState;
-
         enum ControllerButtonEnum{
             Start,
             A,
@@ -35,16 +33,13 @@ namespace Sprint0MingfengHan
             controllerCommandMap.Add(ControllerButtonEnum.A, wCommand);
             controllerCommandMap.Add(ControllerButtonEnum.B, eCommand);
             controllerCommandMap.Add(ControllerButtonEnum.X, rCommand);
-
-            
-            oldState = GamePad.GetState(PlayerIndex.One);
         }
 
 
         public void Update(GameTime gameTime)
         {
             //TODO this needs to be done
-            GamePadState newState = GamePad.GetState(PlayerIndex.One);
+            GamePadState currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
 
             // if the button is not pressed before and button is pressed now, run the corresponding command
@@ -52,25 +47,24 @@ namespace Sprint0MingfengHan
 
             
             // TODO this code looks ugly, may need to refactor later.
-            if (newState.IsConnected)
+            if (currentGamePadState.IsConnected)
             {
-                if(newState.Buttons.Start == ButtonState.Pressed)
+                if(currentGamePadState.Buttons.Start == ButtonState.Pressed)
                 {
                     reactToButtonPressed(ControllerButtonEnum.Start);
                 }
-                else if(newState.Buttons.A == ButtonState.Pressed)
+                else if(currentGamePadState.Buttons.A == ButtonState.Pressed)
                 {
                     reactToButtonPressed(ControllerButtonEnum.A);
                 }
-                else if(newState.Buttons.B == ButtonState.Pressed)
+                else if(currentGamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     reactToButtonPressed(ControllerButtonEnum.B);
                 }
-                else if(newState.Buttons.X == ButtonState.Pressed)
+                else if(currentGamePadState.Buttons.X == ButtonState.Pressed)
                 {
                     reactToButtonPressed(ControllerButtonEnum.X);
                 }
-                oldState = newState;
             }
         }
 
